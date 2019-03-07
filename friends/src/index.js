@@ -6,13 +6,13 @@ import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 
 import './index.css';
-import rootReducer from './reducers/index'
+import { friendsReducer } from './reducers/friendsReducer'
 import App from './App';
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() && compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 
 const store = createStore(
-    rootReducer, 
+    friendsReducer,
     composeEnhancer(applyMiddleware(thunk, logger))
 );
 
