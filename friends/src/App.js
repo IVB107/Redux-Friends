@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import './App.css';
 import Login from './components/Login';
+import Home from './components/Home';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppContainer>
         <Login />
-      </div>
+        <Home />
+      </AppContainer>
     );
   }
 }

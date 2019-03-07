@@ -1,13 +1,16 @@
 import axios from 'axios';
 
-export const FETCHING = 'FETCHING';
-export const SUCCESS = 'SUCCESS';
+export const LOGGING_IN = 'LOGGING_IN';
+export const FETCHING_FRIENDS = 'FETCHING_FRIENDS';
+export const SAVING_FRIENDS = 'SAVING_FRIENDS';
+export const UPDATING_FRIEND = 'UPDATING_FRIEND';
+export const DELETING_FRIEND = 'DELETING_FRIEND';
 export const ERROR = 'ERROR';
 
 export const fetchFriends = () => {
     return (dispatch) => {
         dispatch({
-            type: FETCHING
+            type: LOGGING_IN
         });
         axios.get(``)
         .then(res => {

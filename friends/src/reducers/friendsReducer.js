@@ -1,27 +1,49 @@
-import { FETCHING, SUCCESS, ERROR } from '../actions';
+import { 
+    LOGGING_IN, 
+    FETCHING_FRIENDS,
+    SAVING_FRIENDS,
+    UPDATING_FRIEND,
+    DELETING_FRIEND, 
+    ERROR 
+} from '../actions';
 
 const initialState = {
+    loggingIn: false,
     friends: [],
-    fetching: false,
-    error: ''
+    fetchingFriends: false,
+    savingFriends: false,
+    updatingFriend: false,
+    deletingFriend: false,
+    error: null
 }
 
 export const friendsReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCHING:
+        case LOGGING_IN:
             return {
                 ...state,
-                friends: [],
-                fetching: true,
+                loggingIn: true,
                 error: ''
             }
-        case SUCCESS:
+        case FETCHING_FRIENDS:
             return {
-                
+                ...state,
+            }
+        case SAVING_FRIENDS:
+            return {
+                ...state
+            }
+        case UPDATING_FRIEND:
+            return {
+                ...state
+            }
+        case DELETING_FRIEND:
+            return {
+                ...state
             }
         case ERROR: 
             return {
-
+                ...state,
             }
         default:
             return state;
