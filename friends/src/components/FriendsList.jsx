@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import Friend from './Friend';
+// import Friend from './Friend';
 
 const ListContainer = styled.div`
     display: flex;
@@ -21,10 +21,10 @@ const FriendsList = () => {
     )
 }
 
-const mstp = (state) => {
-    return {
-        friends: state.friendsReducer.friends
-    }
-}
+// const mstp = (state) => {
+//     return {
+//         friends: state.friendsReducer.friends
+//     }
+// }
 
-export default connect(mstp)(FriendsList);
+export default connect(null, null)(FriendsList);

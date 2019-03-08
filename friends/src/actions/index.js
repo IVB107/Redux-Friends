@@ -21,7 +21,7 @@ export const login = creds => dispatch => {
                 payload: res.data.payload
             });
             // Request friend data upon successful login
-            fetchFriends();
+            fetchFriends(creds);
         })
         .catch(err => {
             console.log(err);
@@ -32,12 +32,13 @@ export const login = creds => dispatch => {
         })
 }
 
-export const fetchFriends = () => {
+export const fetchFriends = (creds) => {
+    console.log('Local Storage token:')
+    console.log(localStorage.token);
+    console.log('Credentials:')
+    console.log(creds);
     axios
-        .get('http://localhost:5000/api/friends', {
-            username: 'Lambda School', 
-            password: 'i<3Lambd4'
-        })
+        .get('http://localhost:5000/api/friends', creds)
         .then(res => {
             console.log(res);
             // trigger function to set response data on redux store friends array

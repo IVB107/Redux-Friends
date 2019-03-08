@@ -35,14 +35,11 @@ const Form = styled.form`
 `;
 
 class Login extends Component {
-    constructor(){
-        super();
-        this.state = {
-            credentials: {
-                username: '',
-                password: ''
-            }        
-        }
+    state = {
+        credentials: {
+            username: '',
+            password: ''
+        }        
     }
 
     handleChange = e => {
@@ -90,10 +87,10 @@ class Login extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return({
-        login: (credentials) => {dispatch(login(credentials))}
-    })
-}
+// function mapDispatchToProps(dispatch) {
+//     return({
+//         login: (credentials) => {dispatch(login(credentials))}
+//     })
+// }
 
-export default connect( null, mapDispatchToProps )(Login);
+export default connect( null, { login } )(Login);

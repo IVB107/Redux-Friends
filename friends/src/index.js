@@ -9,7 +9,7 @@ import './index.css';
 import { friendsReducer } from './reducers/friendsReducer'
 import App from './App';
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     friendsReducer,
