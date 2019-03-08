@@ -1,14 +1,47 @@
 import axios from 'axios';
+// import axiosWithAuth from '../axiosAuth';
 
 export const LOGGING_IN = 'LOGGING_IN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGGED_IN = 'LOGGED_IN';
 export const FETCHING_FRIENDS = 'FETCHING_FRIENDS';
+export const GOT_FRIENDS = 'GOT_FRIENDS';
 export const SAVING_FRIENDS = 'SAVING_FRIENDS';
 export const UPDATING_FRIEND = 'UPDATING_FRIEND';
 export const DELETING_FRIEND = 'DELETING_FRIEND';
 export const ERROR = 'ERROR';
 
 // { username: 'Lambda School', password: 'i<3Lambd4' }
+
+export const fetchFriends = dispatch => {
+    console.log('Local Storage token:')
+    console.log(localStorage.token);
+
+    dispatch({
+        type: FETCHING_FRIENDS
+    })
+    axios
+        .get('http://localhost:5000/api/friends', {
+            headers: {Authorization: localStorage.getItem('token')}
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({
+                type: GOT_FRIENDS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    // axiosWithAuth.length('http://localhost:5000/api/friends')
+    //     .then(res => {
+    //         console.log(res);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+}
 
 export const login = creds => dispatch => {
     console.log('Inside login action creator');
@@ -20,8 +53,8 @@ export const login = creds => dispatch => {
                 type: LOGGED_IN,
                 payload: res.data.payload
             });
-            // Request friend data upon successful login
-            fetchFriends(creds);
+            console.log('About to fetch friends...');
+            fetchFriends(dispatch);
         })
         .catch(err => {
             console.log(err);
@@ -30,20 +63,4 @@ export const login = creds => dispatch => {
                 dispatch: 'Login authentication failure'
             })
         })
-}
-
-export const fetchFriends = (creds) => {
-    console.log('Local Storage token:')
-    console.log(localStorage.token);
-    console.log('Credentials:')
-    console.log(creds);
-    axios
-        .get('http://localhost:5000/api/friends', creds)
-        .then(res => {
-            console.log(res);
-            // trigger function to set response data on redux store friends array
-        })
-        .catch(err => {
-            console.log(err);
-        });
 }

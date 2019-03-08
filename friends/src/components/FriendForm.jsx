@@ -44,5 +44,3 @@ class FriendForm extends Component {
 }
 
 export default FriendForm;
-
-// export default connect(null, { submitForm: submitForm }){FriendForm}
