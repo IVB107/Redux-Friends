@@ -2,29 +2,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-// import Friend from './Friend';
+import Friend from './Friend';
 
 const ListContainer = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
 
-const FriendsList = () => {
+const FriendsList = (props) => {
+
+    console.log("PROPS:");
+    console.log(props);
+
     return (
         <ListContainer>
             <h2>Friends:</h2>
-            {/* {props.friends.map(friend => {
-                return <Friend />
-            })} */}
+            {props.friends.map(friend => {
+                return <Friend 
+                            key={friend.id}
+                            name={friend.name}
+                            age={friend.age}
+                            email={friend.email}
+                        />
+            })}
         </ListContainer>
     )
 }
 
-// const mstp = (state) => {
-//     return {
-//         friends: state.friendsReducer.friends
-//     }
-// }
+const matchStateToProps = (state) => {
 
-export default connect(null, null)(FriendsList);
+    console.log('STATE:')
+    console.log(state);
+
+    return {
+        friends: state.friends
+    }
+}
+
+export default connect(matchStateToProps)(FriendsList);

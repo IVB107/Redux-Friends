@@ -1,12 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Friend = () => {
+const FriendContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px;
+    border: 2px solid darkolivegreen;
+
+    > p {
+        margin: 5px;
+    }
+`;
+
+const Friend = props => {
     return (
-        <div>
-            <p>Name:</p>
-            <p>Age:</p>
-            <p>Email:</p>
-        </div>
+        <FriendContainer>
+            <p>Name: {props.name}</p>
+            <p>Age: {props.age}</p>
+            <p>Email: {props.email}</p>
+        </FriendContainer>
     )
 }
 
